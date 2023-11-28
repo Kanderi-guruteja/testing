@@ -1,4 +1,11 @@
 /* Style for the container element */
+body {
+  background-image: url("gurubackground2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .container {
   max-width: 900px; /* Adjust container width as needed */
   margin: 0 auto;
