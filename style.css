@@ -2,22 +2,24 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f7f7f7; /* Light gray background */
+  background-color: #f0f0f0;
 }
 
 .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff; /* White container background */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-h1 {
+.title {
   text-align: center;
-  font-size: 28px;
+  font-size: 36px;
   margin-bottom: 20px;
-  color: #007bff; /* Blue heading color */
+  color: #007bff;
 }
 
 .location-search {
@@ -29,6 +31,7 @@ h1 {
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 #searchLocation {
@@ -37,6 +40,7 @@ h1 {
   color: #fff;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .geolocation-btn {
@@ -49,6 +53,7 @@ h1 {
   color: #fff;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .date-selection {
@@ -58,25 +63,27 @@ h1 {
 #dateSelector {
   padding: 10px;
   border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .result {
-  background-color: #f2f2f2;
+  background-color: #f9f9f9;
   padding: 20px;
   margin-bottom: 20px;
-  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 h2 {
-  font-size: 22px;
+  font-size: 24px;
   margin-bottom: 10px;
-  color: #333; /* Dark heading color */
+  color: #333;
 }
 
 p {
   font-size: 16px;
   margin-bottom: 5px;
-  color: #555; /* Medium text color */
+  color: #555;
 }
 
 .error-message {
