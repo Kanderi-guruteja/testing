@@ -51,13 +51,13 @@ $(document).ready(function () {
 
   resultElement.html(`
    <h2>Sunrise Sunset Based on Location</h2>
-   <p>Sunrise: ${results.sunrise} <img src="sunriseguru1.png" alt="Sunrise" class="small-image"></p>
-   <p>Sunset: ${results.sunset} <img src="sunsetguru2.png" alt="Sunrise" class="small-image"></p>
-   <p>Dawn: ${results.dawn} <img src="dawnguru3.jpg" alt="Sunrise" class="small-image"></p>
-   <p>Dusk: ${results.dusk} <img src="duskguru4.jpg" alt="Sunrise" class="small-image"></p>
-   <p>Day Length: ${results.day_length} <img src="dayguru5.jpg" alt="Sunrise" class="small-image"></p>
-   <p>Solar Noon: ${results.solar_noon} <img src="solarnoonguru6.jpg" alt="Sunrise" class="small-image"></p>
-   <p>Time Zone: ${results.timezone} <img src="timezoneguru7.jpg" alt="Sunrise" class="small-image"></p>
+   <p>Sunrise: ${results.sunrise} </p>
+   <p>Sunset: ${results.sunset} </p>
+   <p>Dawn: ${results.dawn} </p>
+   <p>Dusk: ${results.dusk} </p>
+   <p>Day Length: ${results.day_length} </p>
+   <p>Solar Noon: ${results.solar_noon} </p>
+   <p>Time Zone: ${results.timezone} </p>
   `);
  }
 
