@@ -1,96 +1,119 @@
-// Define the functio to get geocode API
 $(document).ready(function () {
- function fetchLocationCoordinates(location) {
-  const geocodeApiUrl = `https://geocode.maps.co/search?q=${encodeURIComponent(location)}`; // Geocode API URL to search the location
-//initiating the ajax request to geocode API
-  $.ajax({
-   url: geocodeApiUrl,
-   method: "GET",
-   success: function (geocodeData) {
-    const results = geocodeData;
-    console.log(results);//Get the response from function
+    function fetchLocationCoordinates(location) {
+        const geocodeApiUrl = `https://geocode.maps.co/search?q=${encodeURIComponent(location)}`;
 
-    //To check if the searched location was found or not fron the user input
-    if (results && results.length > 0) {
-     const firstResult = results[0];
-     const latitude = firstResult.lat;
-     const longitude = firstResult.lon;
-     //Date Selector to select the date to get the sunrise and sunset data
-     const selectedDate = $("#dateSelector").val();
-     //get the data using the latitude and longitude from geocode api
-     fetchSunriseSunsetData(latitude, longitude, selectedDate);
-    } else {
-     //Exception handling
-     displayError("Location not found.");
+        $.ajax({
+            url: geocodeApiUrl,
+            method: "GET",
+            success: function (geocodeData) {
+                const results = geocodeData;
+
+                if (results && results.length > 0) {
+                    const firstResult = results[0];
+                    const latitude = firstResult.lat;
+                    const longitude = firstResult.lon;
+                    const selectedDate = $("#dateSelector").val();
+                    fetchSunriseSunsetData(latitude, longitude, selectedDate);
+                } else {
+                    displayError("Location not found.");
+                }
+            },
+            error: function (error) {
+                displayError(`Geocode API Error while fetching location: ${error.responseJSON.status}`);
+            },
+        });
     }
-   },
-   error: function (error) {
-    displayError(`Geocode API Error while fetching location: ${error.responseJSON.status}`);
-   },
-  });
- }
 
- function fetchSunriseSunsetData(latitude, longitude, date) {
-  const sunriseSunsetApiUrl = `https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&formatted=0&date=${date}`;
-//Send the ajax request to sunrisesunsetAPI
-  $.ajax({
-   url: sunriseSunsetApiUrl,
-   method: "GET",
-   success: function (data) {
-    updateDashboard(data.results);
-   },
-   //Error handling for sunrisesunset API
-   error: function (error) {
-    displayError(`Sunrise Sunset API Error: ${error.responseJSON.status}`);
-   },
-  });
- }
+    function fetchSunriseSunsetData(latitude, longitude, date) {
+        const sunriseSunsetApiUrl = `https://api.sunrisesunset.io/json?lat=${latitude}&lng=${longitude}&formatted=0&date=${date}`;
 
- function updateDashboard(results) {
-  const resultElement = $("#result");
+        $.ajax({
+            url: sunriseSunsetApiUrl,
+            method: "GET",
+            success: function (data) {
+                updateDashboard(data.results);
+            },
+            error: function (error) {
+                displayError(`Sunrise Sunset API Error: ${error.responseJSON.status}`);
+            },
+        });
+    }
 
-  resultElement.html(`
-   <h2>Sunrise Sunset Based on Location</h2>
-   <p>Sunrise: ${results.sunrise} </p>
-   <p>Sunset: ${results.sunset} </p>
-   <p>Dawn: ${results.dawn} </p>
-   <p>Dusk: ${results.dusk} </p>
-   <p>Day Length: ${results.day_length} </p>
-   <p>Solar Noon: ${results.solar_noon} </p>
-   <p>Time Zone: ${results.timezone} </p>
-  `);
- }
+    function updateDashboard(results) {
+        const resultElement = $("#result");
 
- function displayError(message) {
-  const resultElement = $("#result");
-  resultElement.html(`<p class="error-message">${message}</p>`);
- }
+        resultElement.html(`
+            <h2>Sunrise Sunset Based on Location</h2>
+            <p>Sunrise: ${results.sunrise} </p>
+            <p>Sunset: ${results.sunset} </p>
+            <p>Dawn: ${results.dawn} </p>
+            <p>Dusk: ${results.dusk} </p>
+            <p>Day Length: ${results.day_length} </p>
+            <p>Solar Noon: ${results.solar_noon} </p>
+            <p>Time Zone: ${results.timezone} </p>
+        `);
+    }
 
- $("#getCurrentLocation").click(function () {
-  navigator.geolocation.getCurrentPosition(
-   function (position) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    const selectedDate = $("#dateSelector").val();
-    fetchSunriseSunsetData(latitude, longitude, selectedDate);
-   },
-   function (error) {
-    //Eception for Geolocation
-    displayError(`Geolocation Error: ${error.message}`);
-   }
-  );
- });
+    function displayError(message) {
+        const resultElement = $("#result");
+        resultElement.html(`<p class="error-message">${message}</p>`);
+    }
 
- $("#searchLocation").click(function () {
-  const location = $("#locationInput").val();
-  fetchLocationCoordinates(location);
- });
+    $("#today").click(function () {
+        const today = new Date().toISOString().split('T')[0];
+        $("#dateSelector").val(today);
+        const location = $("#locationInput").val();
+        if (location) {
+            fetchLocationCoordinates(location);
+        }
+    });
 
- $("#dateSelector").change(function () {
-  const selectedDate = $("#dateSelector").val();
-  const location = $("#locationInput").val();
-  if (location) {
-   fetchLocationCoordinates(location);
-  }
- });
+    $("#tomorrow").click(function () {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowISOString = tomorrow.toISOString().split('T')[0];
+        $("#dateSelector").val(tomorrowISOString);
+        const location = $("#locationInput").val();
+        if (location) {
+            fetchLocationCoordinates(location);
+        }
+    });
+
+    $("#yesterday").click(function () {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayISOString = yesterday.toISOString().split('T')[0];
+        $("#dateSelector").val(yesterdayISOString);
+        const location = $("#locationInput").val();
+        if (location) {
+            fetchLocationCoordinates(location);
+        }
+    });
+
+    $("#getCurrentLocation").click(function () {
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                const selectedDate = $("#dateSelector").val();
+                fetchSunriseSunsetData(latitude, longitude, selectedDate);
+            },
+            function (error) {
+                displayError(`Geolocation Error: ${error.message}`);
+            }
+        );
+    });
+
+    $("#searchLocation").click(function () {
+        const location = $("#locationInput").val();
+        fetchLocationCoordinates(location);
+    });
+
+    $("#dateSelector").change(function () {
+        const selectedDate = $("#dateSelector").val();
+        const location = $("#locationInput").val();
+        if (location) {
+            fetchLocationCoordinates(location);
+        }
+    });
 });
