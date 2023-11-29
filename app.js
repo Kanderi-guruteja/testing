@@ -45,30 +45,32 @@ $(document).ready(function () {
 
         resultElement.html(`
             <h2>Sunrise Sunset Based on Location</h2>
-            <table>
-                <tr>
-                    <th>Selected Date</th>
-                    <th>Day of the Week</th>
-                    <th>Sunrise</th>
-                    <th>Sunset</th>
-                    <th>Dawn</th>
-                    <th>Dusk</th>
-                    <th>Day Length</th>
-                    <th>Solar Noon</th>
-                    <th>Time Zone</th>
-                </tr>
-                <tr>
-                    <td>${formattedDate}</td>
-                    <td>${getDayOfWeek(selectedDate)}</td>
-                    <td>${results.sunrise}</td>
-                    <td>${results.sunset}</td>
-                    <td>${results.dawn}</td>
-                    <td>${results.dusk}</td>
-                    <td>${results.day_length}</td>
-                    <td>${results.solar_noon}</td>
-                    <td>${results.timezone}</td>
-                </tr>
-            </table>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Selected Date</th>
+                        <th>Day of the Week</th>
+                        <th>Sunrise</th>
+                        <th>Sunset</th>
+                        <th>Dawn</th>
+                        <th>Dusk</th>
+                        <th>Day Length</th>
+                        <th>Solar Noon</th>
+                        <th>Time Zone</th>
+                    </tr>
+                    <tr>
+                        <td>${formattedDate}</td>
+                        <td>${getDayOfWeek(selectedDate)}</td>
+                        <td>${results.sunrise}</td>
+                        <td>${results.sunset}</td>
+                        <td>${results.dawn}</td>
+                        <td>${results.dusk}</td>
+                        <td>${results.day_length}</td>
+                        <td>${results.solar_noon}</td>
+                        <td>${results.timezone}</td>
+                    </tr>
+                </table>
+            </div>
         `);
     }
 
