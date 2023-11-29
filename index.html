@@ -15,7 +15,7 @@
         <div class="location-search">
             <label for="locationInput">Enter Location:</label>
             <input type="text" id="locationInput" placeholder="Enter city or address">
-            <button id="searchLocation" style="margin-right: 10px;">Search</button>
+            <button id="searchLocation">Search</button>
 
             <div class="geolocation-btn">
                 <button id="getCurrentLocation">Use Current Location</button>
@@ -25,34 +25,22 @@
         <div class="date-selection">
             <label for="dateSelector">Select Date:</label>
             <input type="date" id="dateSelector">
+            <!-- Updated dropdown structure -->
             <div class="dropdown">
                 <button class="dropbtn">Select Relative Date</button>
                 <div class="dropdown-content">
-                    <a href="#" id="today">Today</a>
-                    <a href="#" id="tomorrow">Tomorrow</a>
-                    <a href="#" id="yesterday">Yesterday</a>
+                    <a href="#">Today</a>
+                    <a href="#">Tomorrow</a>
+                    <a href="#">Yesterday</a>
                 </div>
             </div>
         </div>
 
+        <!-- Updated result container with additional styles -->
         <div class="result" id="result">
-            <h2>Sunrise Sunset Based on Location</h2>
-            <table>
-                <tr>
-                    <th>Selected Date</th>
-                    <th>Day of the Week</th>
-                    <th>Sunrise</th>
-                    <th>Sunset</th>
-                    <th>Dawn</th>
-                    <th>Dusk</th>
-                    <th>Day Length</th>
-                    <th>Solar Noon</th>
-                    <th>Time Zone</th>
-                </tr>
-                <tr id="sunriseData">
-                    <!-- Sunrise data will be displayed here -->
-                </tr>
-            </table>
+            <div class="table-container">
+                <!-- Table will be dynamically generated here -->
+            </div>
         </div>
     </div>
 
