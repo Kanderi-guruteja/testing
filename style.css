@@ -1,58 +1,4 @@
-/* Style for the container element */
-body {
-    background-image: url("gurubackground3.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-/* Style for headings */
-h1 {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Style for input fields */
-#locationInput,
-#dateSelector {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-/* Style for buttons */
-#searchLocation,
-#getCurrentLocation {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 15px;
-    font-weight: 600;
-
-    &:hover {
-        background-color: #0069d9;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-}
-
-/* Style for the dropdown button */
+/* Existing styles for the dropdown button */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -68,6 +14,7 @@ h1 {
     font-weight: 600;
 }
 
+/* Existing styles for the dropdown content */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -76,6 +23,11 @@ h1 {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 5px;
+}
+
+/* Updated styles for better compatibility with Microsoft Edge */
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 .dropdown-content a {
