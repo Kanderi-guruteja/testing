@@ -111,4 +111,41 @@ $(document).ready(function () {
             fetchLocationCoordinates(location);
         }
     });
+
+    // Dropdown handling
+    $(".dropbtn").click(function () {
+        $(".dropdown-content").toggleClass("show");
+    });
+
+    $(".dropdown-content a").click(function () {
+        const relativeDate = $(this).text().toLowerCase();
+        let selectedDate = new Date();
+
+        if (relativeDate === "today") {
+            selectedDate = new Date();
+        } else if (relativeDate === "tomorrow") {
+            selectedDate.setDate(selectedDate.getDate() + 1);
+        } else if (relativeDate === "yesterday") {
+            selectedDate.setDate(selectedDate.getDate() - 1);
+        }
+
+        $("#dateSelector").val(selectedDate.toISOString().split("T")[0]);
+        const location = $("#locationInput").val();
+        if (location) {
+            fetchLocationCoordinates(location);
+        }
+
+        // Hide the dropdown after selecting a relative date
+        $(".dropdown-content").removeClass("show");
+    });
+
+    // Close the dropdown if the user clicks outside of it
+    $(window).click(function (e) {
+        if (!e.target.matches('.dropbtn')) {
+            const dropdownContent = $(".dropdown-content");
+            if (dropdownContent.hasClass('show')) {
+                dropdownContent.removeClass('show');
+            }
+        }
+    });
 });
