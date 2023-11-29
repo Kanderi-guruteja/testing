@@ -31,7 +31,7 @@ $(document).ready(function () {
             url: sunriseSunsetApiUrl,
             method: "GET",
             success: function (data) {
-                updateDashboard(data.results);
+                updateDashboard(data.results, date);
             },
             error: function (error) {
                 displayError(`Sunrise Sunset API Error: ${error.responseJSON.status}`);
@@ -39,11 +39,14 @@ $(document).ready(function () {
         });
     }
 
-    function updateDashboard(results) {
+    function updateDashboard(results, selectedDate) {
         const resultElement = $("#result");
+        const formattedDate = new Date(selectedDate).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
         resultElement.html(`
             <h2>Sunrise Sunset Based on Location</h2>
+            <p>Selected Date: ${formattedDate}</p>
+            <p>Day of the Week: ${getDayOfWeek(selectedDate)}</p>
             <p>Sunrise: ${results.sunrise} </p>
             <p>Sunset: ${results.sunset} </p>
             <p>Dawn: ${results.dawn} </p>
@@ -52,6 +55,13 @@ $(document).ready(function () {
             <p>Solar Noon: ${results.solar_noon} </p>
             <p>Time Zone: ${results.timezone} </p>
         `);
+    }
+
+    function getDayOfWeek(dateString) {
+        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const date = new Date(dateString);
+        const dayIndex = date.getDay();
+        return daysOfWeek[dayIndex];
     }
 
     function displayError(message) {
