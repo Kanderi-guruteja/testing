@@ -1,5 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunrise Sunset Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Sunrise Sunset Dashboard</h1>
+
+    <div class="location-search">
+      <label for="locationInput">Enter Location:</label>
+      <input type="text" id="locationInput" placeholder="Enter city or address">
+      <button id="searchLocation">Search</button>
+
+      <div class="geolocation-btn">
+        <button id="getCurrentLocation">Use Current Location</button>
+      </div>
+    </div>
+
+    <div class="date-selection">
+      <label for="dateSelector">Select Date:</label>
+      <input type="date" id="dateSelector">
+    </div>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,12 +43,12 @@
 
 <body>
     <div class="container">
-        <h1>Sunrise Sunset Dashboard</h1>
+        <h1 style="color: #3498db;">Sunrise Sunset Dashboard</h1>
 
         <div class="location-search">
             <label for="locationInput">Enter Location:</label>
             <input type="text" id="locationInput" placeholder="Enter city or address">
-            <button id="searchLocation">Search</button>
+            <button id="searchLocation" style="margin-right: 10px;">Search</button>
 
             <div class="geolocation-btn">
                 <button id="getCurrentLocation">Use Current Location</button>
@@ -25,23 +58,17 @@
         <div class="date-selection">
             <label for="dateSelector">Select Date:</label>
             <input type="date" id="dateSelector">
-            <!-- Updated dropdown structure -->
             <div class="dropdown">
                 <button class="dropbtn">Select Relative Date</button>
                 <div class="dropdown-content">
-                    <a href="#">Today</a>
-                    <a href="#">Tomorrow</a>
-                    <a href="#">Yesterday</a>
+                    <a href="#" id="today">Today</a>
+                    <a href="#" id="tomorrow">Tomorrow</a>
+                    <a href="#" id="yesterday">Yesterday</a>
                 </div>
             </div>
         </div>
 
-        <!-- Updated result container with additional styles -->
-        <div class="result" id="result">
-            <div class="table-container">
-                <!-- Table will be dynamically generated here -->
-            </div>
-        </div>
+        <div class="result" id="result"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
