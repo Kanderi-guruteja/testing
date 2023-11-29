@@ -45,15 +45,30 @@ $(document).ready(function () {
 
         resultElement.html(`
             <h2>Sunrise Sunset Based on Location</h2>
-            <p>Selected Date: ${formattedDate}</p>
-            <p>Day of the Week: ${getDayOfWeek(selectedDate)}</p>
-            <p>Sunrise: ${results.sunrise} </p>
-            <p>Sunset: ${results.sunset} </p>
-            <p>Dawn: ${results.dawn} </p>
-            <p>Dusk: ${results.dusk} </p>
-            <p>Day Length: ${results.day_length} </p>
-            <p>Solar Noon: ${results.solar_noon} </p>
-            <p>Time Zone: ${results.timezone} </p>
+            <table>
+                <tr>
+                    <th>Selected Date</th>
+                    <th>Day of the Week</th>
+                    <th>Sunrise</th>
+                    <th>Sunset</th>
+                    <th>Dawn</th>
+                    <th>Dusk</th>
+                    <th>Day Length</th>
+                    <th>Solar Noon</th>
+                    <th>Time Zone</th>
+                </tr>
+                <tr>
+                    <td>${formattedDate}</td>
+                    <td>${getDayOfWeek(selectedDate)}</td>
+                    <td>${results.sunrise}</td>
+                    <td>${results.sunset}</td>
+                    <td>${results.dawn}</td>
+                    <td>${results.dusk}</td>
+                    <td>${results.day_length}</td>
+                    <td>${results.solar_noon}</td>
+                    <td>${results.timezone}</td>
+                </tr>
+            </table>
         `);
     }
 
@@ -69,37 +84,7 @@ $(document).ready(function () {
         resultElement.html(`<p class="error-message">${message}</p>`);
     }
 
-    $("#today").click(function () {
-        const today = new Date().toISOString().split('T')[0];
-        $("#dateSelector").val(today);
-        const location = $("#locationInput").val();
-        if (location) {
-            fetchLocationCoordinates(location);
-        }
-    });
-
-    $("#tomorrow").click(function () {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const tomorrowISOString = tomorrow.toISOString().split('T')[0];
-        $("#dateSelector").val(tomorrowISOString);
-        const location = $("#locationInput").val();
-        if (location) {
-            fetchLocationCoordinates(location);
-        }
-    });
-
-    $("#yesterday").click(function () {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yesterdayISOString = yesterday.toISOString().split('T')[0];
-        $("#dateSelector").val(yesterdayISOString);
-        const location = $("#locationInput").val();
-        if (location) {
-            fetchLocationCoordinates(location);
-        }
-    });
-
+    // Event handlers
     $("#getCurrentLocation").click(function () {
         navigator.geolocation.getCurrentPosition(
             function (position) {
