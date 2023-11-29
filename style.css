@@ -1,59 +1,11 @@
-/* Style for the container element */
-body {
-    background-image: url("gurubackground3.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+/* Add these styles at the end of your existing style.css file */
+
+/* Style for the dropdown button */
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-.container {
-    max-width: 900px; /* Adjust container width as needed */
-    margin: 0 auto;
-    padding: 30px; /* Adjust padding for spacing around content */
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle drop shadow */
-    border-radius: 8px;
-}
-
-/* Style for headings */
-h1 {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600; /* Increase font weight for bolder appearance */
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Style for input fields */
-#locationInput,
-#dateSelector {
-    width: 100%; /* Make inputs stretch to full width */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-/* Style for buttons */
-#searchLocation,
-#getCurrentLocation {
-    padding: 10px 20px; /* Increase button padding for better visual balance */
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 15px; /* Adjust spacing between buttons */
-    font-weight: 600; /* Increase font weight for bolder appearance */
-
-    /* Add a subtle hover effect */
-    &:hover {
-        background-color: #0069d9;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-}
-
-/* Style for dropdown button */
 .dropbtn {
     padding: 10px 20px;
     background-color: #007bff;
@@ -62,22 +14,46 @@ h1 {
     cursor: pointer;
     border-radius: 5px;
     font-weight: 600;
-
-    /* Add a subtle hover effect */
-    &:hover {
-        background-color: #0069d9;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
 }
 
-/* Style for the result area */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+/* Additional styles for a more visually appealing result */
 .result {
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     padding: 20px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-top: 20px;
-    overflow-x: auto; /* Enable horizontal scrolling on small screens */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-top: 15px;
 }
 
 table {
@@ -88,7 +64,7 @@ table {
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: left;
 }
 
@@ -96,5 +72,3 @@ th {
     background-color: #3498db;
     color: white;
 }
-
-/* Add your additional styles below */
