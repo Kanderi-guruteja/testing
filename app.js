@@ -6,20 +6,26 @@ $(document).ready(function () {
             url: geocodeApiUrl,
             method: "GET",
             success: function (geocodeData) {
-                const results = geocodeData;
+                try {
+                    const results = geocodeData;
 
-                if (results && results.length > 0) {
-                    const firstResult = results[0];
-                    const latitude = firstResult.lat;
-                    const longitude = firstResult.lon;
-                    const selectedDate = $("#dateSelector").val();
-                    fetchSunriseSunsetData(latitude, longitude, selectedDate);
-                } else {
-                    displayError("Location not found.");
+                    if (results && results.length > 0) {
+                        const firstResult = results[0];
+                        const latitude = firstResult.lat;
+                        const longitude = firstResult.lon;
+                        const selectedDate = $("#dateSelector").val();
+                        fetchSunriseSunsetData(latitude, longitude, selectedDate);
+                    } else {
+                        displayError("Location not found.");
+                    }
+                } catch (error) {
+                    console.error("An error occurred while processing geocode data:", error);
+                    displayError("An error occurred while fetching location.");
                 }
             },
             error: function (error) {
-                displayError(`Geocode API Error while fetching location: ${error.responseJSON.status}`);
+                console.error("Geocode API error:", error);
+                displayError(`Geocode API Error while fetching location: ${error.responseJSON?.status}`);
             },
         });
     }
@@ -31,10 +37,16 @@ $(document).ready(function () {
             url: sunriseSunsetApiUrl,
             method: "GET",
             success: function (data) {
-                updateDashboard(data.results, date);
+                try {
+                    updateDashboard(data.results, date);
+                } catch (error) {
+                    console.error("An error occurred while processing sunrise/sunset data:", error);
+                    displayError("An error occurred while fetching sunrise/sunset data.");
+                }
             },
             error: function (error) {
-                displayError(`Sunrise Sunset API Error: ${error.responseJSON.status}`);
+                console.error("Sunrise Sunset API error:", error);
+                displayError(`Sunrise Sunset API Error: ${error.responseJSON?.status}`);
             },
         });
     }
@@ -70,60 +82,91 @@ $(document).ready(function () {
     }
 
     $("#today").click(function () {
-        const today = new Date().toISOString().split('T')[0];
-        $("#dateSelector").val(today);
-        const location = $("#locationInput").val();
-        if (location) {
-            fetchLocationCoordinates(location);
+        try {
+            const today = new Date().toISOString().split('T')[0];
+            $("#dateSelector").val(today);
+            const location = $("#locationInput").val();
+            if (location) {
+                fetchLocationCoordinates(location);
+            }
+        } catch (error) {
+            console.error("An error occurred while processing today's date:", error);
+            displayError("An error occurred while setting today's date.");
         }
     });
 
     $("#tomorrow").click(function () {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const tomorrowISOString = tomorrow.toISOString().split('T')[0];
-        $("#dateSelector").val(tomorrowISOString);
-        const location = $("#locationInput").val();
-        if (location) {
-            fetchLocationCoordinates(location);
+        try {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowISOString = tomorrow.toISOString().split('T')[0];
+            $("#dateSelector").val(tomorrowISOString);
+            const location = $("#locationInput").val();
+            if (location) {
+                fetchLocationCoordinates(location);
+            }
+        } catch (error) {
+            console.error("An error occurred while processing tomorrow's date:", error);
+            displayError("An error occurred while setting tomorrow's date.");
         }
     });
 
     $("#yesterday").click(function () {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yesterdayISOString = yesterday.toISOString().split('T')[0];
-        $("#dateSelector").val(yesterdayISOString);
-        const location = $("#locationInput").val();
-        if (location) {
-            fetchLocationCoordinates(location);
+        try {
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const yesterdayISOString = yesterday.toISOString().split('T')[0];
+            $("#dateSelector").val(yesterdayISOString);
+            const location = $("#locationInput").val();
+            if (location) {
+                fetchLocationCoordinates(location);
+            }
+        } catch (error) {
+            console.error("An error occurred while processing yesterday's date:", error);
+            displayError("An error occurred while setting yesterday's date.");
         }
     });
 
     $("#getCurrentLocation").click(function () {
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-                const selectedDate = $("#dateSelector").val();
-                fetchSunriseSunsetData(latitude, longitude, selectedDate);
-            },
-            function (error) {
-                displayError(`Geolocation Error: ${error.message}`);
-            }
-        );
+        try {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    const selectedDate = $("#dateSelector").val();
+                    fetchSunriseSunsetData(latitude, longitude, selectedDate);
+                },
+                function (error) {
+                    console.error("Geolocation error:", error);
+                    displayError(`Geolocation Error: ${error.message}`);
+                }
+            );
+        } catch (error) {
+            console.error("An error occurred while getting current location:", error);
+            displayError("An error occurred while getting current location.");
+        }
     });
 
     $("#searchLocation").click(function () {
-        const location = $("#locationInput").val();
-        fetchLocationCoordinates(location);
+        try {
+            const location = $("#locationInput").val();
+            fetchLocationCoordinates(location);
+        } catch (error) {
+            console.error("An error occurred during location search:", error);
+            displayError("An error occurred during location search.");
+        }
     });
 
     $("#dateSelector").change(function () {
-        const selectedDate = $("#dateSelector").val();
-        const location = $("#locationInput").val();
-        if (location) {
-            fetchLocationCoordinates(location);
+        try {
+            const selectedDate = $("#dateSelector").val();
+            const location = $("#locationInput").val();
+            if (location) {
+                fetchLocationCoordinates(location);
+            }
+        } catch (error) {
+            console.error("An error occurred during date selection:", error);
+            displayError("An error occurred during date selection.");
         }
     });
 });
