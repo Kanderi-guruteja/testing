@@ -131,7 +131,8 @@ $(document).ready(function () {
             selectedDate.setDate(selectedDate.getDate() - 1);
         }
 
-        $("#dateSelector").val(selectedDate.toISOString().split("T")[0]);
+        const isoDateString = selectedDate.toISOString().split("T")[0];
+        $("#dateSelector").val(isoDateString);
         const location = $("#locationInput").val();
         if (location) {
             fetchLocationCoordinates(location);
