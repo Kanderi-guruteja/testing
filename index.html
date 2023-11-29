@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sunrise Sunset Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Sunset Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="container">
-    <h1>Sunrise Sunset Dashboard</h1>
+    <div class="container">
+        <h1>Sunrise Sunset Dashboard</h1>
 
-    <div class="location-search">
-      <label for="locationInput">Enter Location:</label>
-      <input type="text" id="locationInput" placeholder="Enter city or address">
-      <button id="searchLocation">Search</button>
+        <div class="location-search">
+            <label for="locationInput">Enter Location:</label>
+            <input type="text" id="locationInput" placeholder="Enter city or address">
+            <button id="searchLocation">Search</button>
 
-      <div class="geolocation-btn">
-        <button id="getCurrentLocation">Use Current Location</button>
-      </div>
-    </div>
-
-    <div class="date-selection">
-      <label for="dateSelector">Select Date:</label>
-      <input type="date" id="dateSelector">
-      <div class="dropdown">
-        <button class="dropbtn">Select Relative Date</button>
-        <div class="dropdown-content">
-          <a href="#" id="today">Today</a>
-          <a href="#" id="tomorrow">Tomorrow</a>
-          <a href="#" id="yesterday">Yesterday</a>
+            <div class="geolocation-btn">
+                <button id="getCurrentLocation">Use Current Location</button>
+            </div>
         </div>
-      </div>
+
+        <div class="date-selection">
+            <label for="dateSelector">Select Date:</label>
+            <input type="date" id="dateSelector">
+            <div class="dropdown">
+                <button class="dropbtn">Select Relative Date</button>
+                <div class="dropdown-content">
+                    <a href="#" id="today">Today</a>
+                    <a href="#" id="tomorrow">Tomorrow</a>
+                    <a href="#" id="yesterday">Yesterday</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="result" id="result"></div>
     </div>
 
-    <div class="result" id="result"></div>
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
